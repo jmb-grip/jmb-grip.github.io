@@ -1547,22 +1547,22 @@ img[src$="GRIP-hero.png"] {
 }
 
 /* Enable section-by-section scroll snapping */
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y proximity;  /* try 'mandatory' for stronger snapping */
-}
+#html {
+ # scroll-behavior: smooth;
+  #scroll-snap-type: y proximity;  /* try 'mandatory' for stronger snapping */
+#}
 
-/* Each major section snaps to the top of the viewport */
-.snap-section {
-  scroll-snap-align: start;
-min-height: auto;
-}
+#/* Each major section snaps to the top of the viewport */
+#.snap-section {
+ # scroll-snap-align: start;
+#min-height: auto;
+#}
 
-/* Disable snapping for the science image section, even if it has snap-section */
-.science-diagram-section.snap-section {
-  scroll-snap-align: none;
-  scroll-snap-stop: normal;
-}
+#/* Disable snapping for the science image section, even if it has snap-section */
+#.science-diagram-section.snap-section {
+ # scroll-snap-align: none;
+  #scroll-snap-stop: normal;
+#}
 
 /* "The GRIP platform at a glance" heading: force left alignment */
 .starburst-header {

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact | GRIP Molecular Technologies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Get in touch with GRIP Molecular Technologies about partnerships, collaborations, and technology inquiries." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-background"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+  <img
+    src="assets/logo.png"
+    alt="GRIP Molecular logo"
+    class="brand-logo icon-anim"
+  />
+</a>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+       	<a href="team.html" class="nav-link">Team</a>
+        <a href="contact.html" class="nav-link nav-cta active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contact-main">
+  <section class="page-hero">
+  <div class="container page-hero-inner contact-hero reveal">
+    <img
+      src="assets/GRIP-hero.png"
+      alt="GRIP Molecular diagnostic platform"
+      class="contact-hero-image icon-anim"
+    />
+
+    <div class="contact-hero-text">
+      <h1>Let’s build diagnostics that keep up with pathogens</h1>
+      <p>
+        Whether you’re a diagnostics manufacturer, a research group, or a public health organization,
+        we’d love to explore how GRIP can support your mission.
+      </p>
+    </div>
+  </div>
+</section>
+
+    <section class="contact-section">
+      <div class="container contact-grid">
+        <div class="contact-card reveal">
+          <h2 class="contact-heading">Contact us</h2>
+          <!-- If you use a service like Formspree, update the action attribute below -->
+          <form class="contact-form" method="post" action="#">
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+
+            <div class="form-row">
+              <label for="organization">Organization</label>
+              <input id="organization" name="organization" type="text" />
+            </div>
+
+            <div class="form-row">
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="button primary full-width">Send message</button>
+          </form>
+        </div>
+
+        <aside class="contact-info reveal">
+          <h2 class="contact-heading">Collaboration & partnerships</h2>
+          <p>
+            We’re actively exploring collaborations with:
+          </p>
+          <ul class="contact-list">
+            <li>Angel investors</li>
+            <li>Strategic investors</li>
+            <li>VC firms</li>
+          </ul>
+
+          <div class="contact-details">
+            <!-- Replace with your real contact details -->
+            <p><strong>Location</strong><br />St. Paul, MN, USA</p>
+          </div>
+
+          <p class="contact-note">
+            Prefer a direct introduction? Reach out, and we’ll coordinate a call to take a deeper dive.
+          </p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> GRIP Molecular Technologies, Inc. All rights reserved.</span>
+      <span class="footer-links">
+        <a href="index.html">Home</a>
+        <span>•</span>
+        <a href="science.html">The science</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

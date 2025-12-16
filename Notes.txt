@@ -1,0 +1,17 @@
+12/15/25
+Website notes:
+- JMO - begin with "say goodbye to long wait for your results" - mention non-NAAT, molecular precision, test anywhere
+- Hit em right up front with the advantages. Right under 'Molecular test for LFA' - no amplification, room temp, test anywhere
+- Make "The diagnostic delivers molecular-grade performance with the simplicity of lateral flow." in bold, and move to next line.
+
+DONE - Add section right after the heading - simple introduction
+	- Expanded or improved CRISPR-based diagnostic that: 
+	- Title: "The next generation of CRISPR-based diagnostics" 
+	- Describe advantages of using a protease - Protease-based, minimizes false positives, room temp, easily adaptable to many existing readout formats.
+	
+- Add simple, transparent cartridge for e-chem sensor image
+DONE - Make LFA + e-chem + colorimetric white background, round edges, teal background
+
+DONE - Make logo little bit smaller - increase width of text section
+
+DONE - Make colorimetric tube on left lighter/grayer, and make the one on the right slightly less dark blue

@@ -1,0 +1,1587 @@
+/* Base layout */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-x: 50%;
+  --bg-y: 50%;
+
+  /* Teal-driven accent (match your logo) */
+  --accent: #0f766e;
+  --accent-soft: rgba(15, 118, 110, 0.24);
+
+  /* Dark mode text + surfaces */
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-soft: rgba(148, 163, 184, 0.35);
+  --surface: rgba(15, 23, 42, 0.96);  /* main card surface */
+
+  --radius-lg: 1.5rem;
+
+  /* Deeper shadow for dark bg */
+  --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.7);
+
+  --max-width: 1120px;
+  --page-padding: 1.5rem;
+  --section-padding-y: 4.5rem;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  min-height: 100vh;
+  position: relative;
+  background-color: #020617; /* dark slate */
+}
+
+/* Subtle animated white background texture */
+
+.page-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    /* cursor-following teal glow */
+    radial-gradient(
+      circle at var(--bg-x) var(--bg-y),
+      rgba(34, 211, 238, 0.20),
+      transparent 38%
+    ),
+    /* subtle static dark textures */
+    radial-gradient(circle at 10% 10%, rgba(15, 23, 42, 0.95), transparent 60%),
+    radial-gradient(circle at 90% 90%, rgba(15, 23, 42, 0.98), transparent 65%),
+    #020617;
+  background-attachment: fixed;
+  transition: background-position 0.1s linear;
+  pointer-events: none;
+}
+
+
+/* Soft teal cursor-following spheres */
+
+
+/* Containers & sections */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--page-padding);
+}
+
+main {
+  padding-top: 4.25rem;
+}
+
+section {
+  padding-block: var(--section-padding-y);
+}
+
+.section-header {
+  text-align: left;
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+}
+
+/* Override for LFA section only */
+.lfa-section .section-header {
+  text-align: left !important;
+}
+
+.section-header h2 {
+  text-align: left;
+  font-size: 1.8rem;
+  margin-bottom: 0.15rem;
+  letter-spacing: -0.04em;
+}
+
+.section-header p {
+  margin: 0;
+  color: #cbd5f5; /* a bit brighter on dark */
+}
+
+
+/* Header / nav */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px);
+  background: rgba(15, 23, 42, 0.92);
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.7rem;
+  gap: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-logo {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  transition: background 180ms ease-out, color 180ms ease-out,
+    box-shadow 180ms ease-out, transform 180ms ease-out;
+}
+
+/* Dark surface cards / panels */
+
+.quote-inner,
+.science-card,
+.science-step,
+.contact-card,
+.contact-info,
+.team-card,
+.partner-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Partner tiles are a bit flatter */
+.partner-card {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Steps use dashed border but on dark */
+.science-step {
+  border-style: dashed;
+  border-color: rgba(148, 163, 184, 0.7);
+}
+
+/* General text colors on dark */
+p {
+  color: var(--text-muted);
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-main);
+}
+
+.nav-link:hover {
+  background: rgba(15, 23, 42, 0.9);
+  color: #f9fafb;
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  background: rgba(15, 118, 110, 0.35);
+  color: #e0f2f1;
+  box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.5);
+}
+
+.nav-cta {
+  border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+/* Buttons */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-med), color var(--transition-med),
+    box-shadow var(--transition-med), transform var(--transition-med);
+}
+
+.button.primary {
+  background: #0f74ff;
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(15, 116, 255, 0.27);
+}
+
+.button.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 35px rgba(15, 116, 255, 0.3);
+}
+
+.button.ghost {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-main);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.button.ghost:hover {
+  background: #ffffff;
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
+}
+
+.button.full-width {
+  width: 100%;
+}
+
+/* Hero (home) */
+
+.hero-section {
+  padding-top: 5.25rem;
+  padding-bottom: 4.5rem;
+  background: radial-gradient(circle at 0% 0%, rgba(45, 212, 191, 0.12), transparent 55%);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-text,
+.hero-caption {
+  color: var(--text-muted);
+}
+
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.95rem;
+  color: var(--accent);
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2.3rem, 3vw + 1rem, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+  margin-bottom: 1rem;
+}
+
+.hero-text {
+  max-width: 38rem;
+  margin: 0 0 1.3rem;
+  font-size: 1.11rem;
+  color: #ffffff;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 300;  /* normal weight; try 300 if you want it even lighter */
+}
+
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.hero-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Placeholder hero "orbit" visual */
+
+.hero-orbit {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.75), #dbeafe);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.hero-core {
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #ffffff, #bfdbfe);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.24);
+}
+
+.hero-orbit-ring,
+.hero-orbit-ring.second {
+  position: absolute;
+  inset: 16%;
+  border-radius: 999px;
+  border: 1px dashed rgba(148, 163, 184, 0.7);
+}
+
+.hero-orbit-ring.second {
+  inset: 8%;
+  border-style: solid;
+  border-color: rgba(96, 165, 250, 0.7);
+}
+
+.hero-orbit-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.25), transparent 55%);
+  mix-blend-mode: soft-light;
+}
+
+.hero-caption {
+  color: var(--text-muted);
+  font-size: 1.9rem;
+  text-align: center;
+  max-width: 260px;
+}
+
+/* GRIP platform at a glance / starburst section (2-column layout) */
+
+.starburst-section {
+  padding-block: var(--section-padding-y);
+}
+
+.starburst-header {
+  margin-bottom: 1.8rem;
+  text-align: left;
+}
+
+/* 2 columns on desktop: left = points, right = image */
+.starburst-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+  gap: 2.3rem;
+  align-items: flex-start;
+}
+
+/* Left column: stack all 6 cards */
+
+.starburst-points {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Individual point cards */
+
+.starburst-point {
+  padding: 1rem 1rem 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.85);
+  transition:
+    transform 200ms ease-out,
+    border-color 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+.starburst-point-title {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;  /* was 1rem; bump up as you like (1.2 also works) */
+  font-weight: 600;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+
+.starburst-point-text {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+}
+
+
+/* Hover: tiny zoom + teal outline */
+
+.starburst-point:hover {
+  transform: translateY(-2px) scale(1.07);
+  border-color: rgba(45, 212, 191, 0.85); /* teal outline on hover */
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+}
+
+/* Right column: image */
+
+.starburst-image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.starburst-image {
+  width: 100%;
+  max-width: 580px;      /* adjust up/down to taste */
+  height: auto;
+  display: block;
+  border-radius: 0.25rem;
+  background: transparent;
+  box-shadow: none;
+  transition: transform 220ms ease-out;
+  transform-origin: center center;
+}
+
+/* Keep tiny hover zoom on image as well (optional) */
+.starburst-image-wrapper:hover .starburst-image {
+  transform: scale(1.12);
+}
+
+/* Mobile: stack image and points vertically */
+
+@media (max-width: 900px) {
+  .starburst-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.6rem;
+  }
+
+  /* On phones, show text first and image second (or flip if you prefer) */
+  .starburst-points {
+    order: 2;
+  }
+
+  .starburst-image-wrapper {
+    order: 1;
+  }
+
+  .starburst-image {
+    max-width: 320px;
+  }
+}
+
+/* Next-generation CRISPR diagnostics section */
+
+.nextgen-section {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.nextgen-inner {
+  /* REMOVE max-width entirely */
+}
+
+.nextgen-title {
+  font-size: clamp(2.35rem, 3.1vw + 0.9rem, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  margin: 0 0 1.2rem;
+  color: var(--text-main);
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
+.nextgen-text {
+  max-width: 860px;          /* wider than default body text */
+  margin: 0 auto;            /* centers the block */
+  text-align: center;        /* centers the text itself */
+
+  font-size: 1.4rem;         /* slightly larger than normal paragraphs */
+  line-height: 1.55;
+  color: var(--text-main);
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+}
+
+.nextgen-text strong {
+  font-weight: 600;
+  color: #e0f2f1;
+}
+
+.nextgen-section{
+  position: relative;
+  overflow: hidden;
+}
+
+.nextgen-section::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(45,212,191,0.18), transparent 55%),
+    radial-gradient(circle at 80% 60%, rgba(56,189,248,0.10), transparent 58%);
+  pointer-events:none;
+  filter: blur(2px);
+  opacity: 0.9;
+}
+
+.nextgen-inner{
+  position: relative;
+  z-index: 1;
+}
+
+/* LFA 1-2-3 section (homepage) */
+
+.lfa-section {
+  padding-block: var(--section-padding-y);
+}
+
+.lfa-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.1rem;
+}
+
+/* Heading left-aligned */
+.lfa-section .section-header {
+  text-align: left;
+}
+
+/* LFA text paragraph (3 lines, larger than normal body text) */
+
+.lfa-text {
+  max-width: 100%;      /* or keep your preferred width */
+  margin: 0 0 4rem;    /* 👈 no auto centering – block is left aligned */
+  font-size: 1.1rem;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--text-main);
+  text-align: left;      /* text itself left aligned */
+  line-height: 1.5;
+}
+
+
+
+.lfa-list li + li {
+  margin-top: 0.45rem;
+}
+
+/* Center the LFA image, make it a good medium-large size */
+
+.lfa-image-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.lfa-image {
+  width: 80%;
+  max-width: 480px;      /* look below for actual code controlling this image size - changing this will not work*/
+  height: auto;
+  display: block;
+  border-radius: 0.75rem;
+  background: transparent;
+  box-shadow: none;
+  transition: transform 220ms ease-out;
+  transform-origin: center center;
+}
+
+/* Optional tiny zoom on hover */
+.lfa-image-wrapper:hover .lfa-image {
+  transform: scale(1.05);
+}
+
+
+
+
+/* Mobile: stack text and stat card vertically */
+
+@media (max-width: 900px) {
+  .std-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.6rem;
+  }
+
+  .std-stat-card {
+    max-width: 320px;
+    margin-inline: auto;
+  }
+}
+
+
+/* Quote section */
+
+.quote-section {
+  padding-top: 3rem;
+  padding-bottom: 3.5rem;
+}
+
+.quote-inner {
+  /* remove card look */
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+
+  /* keep layout */
+  padding: 2.1rem 0 2.2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  align-items: flex-start;
+}
+
+
+.quote-photo-block {
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.quote-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+  margin-bottom: 0.7rem;
+}
+
+.quote-text {
+  font-size: 1.02rem;
+  margin: 0 0 0.9rem;
+  color: #ffffff;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 300;  /* use 300 if you want it even lighter */
+}
+
+.quote-content {
+  flex: 1 1 260px;
+  position: relative;
+}
+
+.quote-mark {
+  font-size: 2.8rem;
+  color: rgba(209, 213, 219, 0.9);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.quote-text {
+  font-size: 1.02rem;
+  margin: 0 0 0.9rem;
+  color: #ffffff;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 300;  /* use 300 if you want it even lighter */
+}
+
+
+.quote-name {
+  margin: 0;
+  font-size: 1.65rem;  /* enlarge name */
+  font-weight: 600;
+  color: #ffffff;     /* white name text */
+}
+
+.quote-credentials {
+  font-size: 0.83rem;
+  color: #ffffff;
+  line-height: 1.4;
+  margin: 0;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 250;  /* or 300 for extra light */
+}
+
+
+/* Stack everything nicely on smaller screens */
+@media (max-width: 720px) {
+  .quote-inner {
+    padding-inline: 1.5rem;
+  }
+
+  .quote-photo-block {
+    flex: 1 1 100%;
+  }
+
+  .quote-content {
+    flex: 1 1 100%;
+  }
+
+  .quote-photo {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+/* Partners */
+
+.partners-section {
+  padding-top: 0;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;          /* was probably larger (e.g. 1.5rem) */
+  max-width: 780px;     /* <— this makes the 3 columns smaller */
+  margin: 0 auto;       /* center the 3×3 grid */
+}
+
+.partner-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  /* make each tile a square: width set by grid, height matches width */
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  padding: 0.6rem;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+}
+
+
+.partner-card img {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+/* Science page */
+
+.science-hero-text {
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 300;   /* match the lighter weight you used on the homepage */
+font-size: 1.1rem;
+  color: var(--text-main);
+  margin: 0 0 0rem;   /* 👈 smaller bottom margin */
+}
+
+.page-hero {
+  padding-top: 1.4rem;
+  padding-bottom: 1.5rem;
+}
+
+.page-hero-inner h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.7rem;
+  letter-spacing: -0.04em;
+}
+
+.page-hero-inner p {
+  max-width: 36rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.science-section {
+  padding-top: 0;
+}
+
+.science-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.science-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: var(--radius-lg);
+  padding: 0.1rem 0.1rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+  font-size: 0.96rem;
+}
+
+.science-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.science-card p {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  color: var(--text-muted);
+}
+
+.science-flow-section {
+  padding-top: 3rem;
+}
+
+.science-flow-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.science-step {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 1.2rem;
+  padding: 1.4rem 1.2rem 1.3rem;
+  border: 1px dashed rgba(148, 163, 184, 0.7);
+  font-size: 0.92rem;
+}
+
+.step-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(15, 116, 255, 0.1);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+.science-diagram-section {
+  padding-top: 0;
+  padding-bottom: 0.1rem;
+}
+
+.science-diagram-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.science-diagram {
+  width: 100% !important;
+  max-width: 900px !important;  /* tweak size as you like */
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
+  transition: transform 220ms ease-out;
+  transform-origin: center center;
+}
+
+/* Tiny zoom on hover for the science image */
+.science-diagram-section:hover img {
+  transform: scale(1.2);
+}
+
+
+
+
+/* Contact page */
+
+.contact-section {
+  padding-top: 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+  gap: 2rem;
+}
+
+.contact-card,
+.contact-info {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  padding: 1.8rem 1.7rem 1.7rem;
+}
+
+.contact-card h2,
+.contact-info h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.contact-form .form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.contact-form label {
+  font-size: 0.86rem;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+  color: var(--text-muted);
+}
+
+.contact-form input,
+.contact-form textarea {
+  border-radius: 0.8rem;
+  border: 1px solid rgba(209, 213, 219, 0.9);
+  padding: 0.65rem 0.8rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  outline: none;
+  background: #ffffff;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(59, 130, 246, 0.9);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.8);
+}
+
+.contact-list {
+  padding-left: 1.2rem;
+  margin-top: 0.4rem;
+  margin-bottom: 1.2rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.contact-details p {
+  margin: 0 0 0.7rem;
+  font-size: 0.94rem;
+}
+
+.contact-details a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+.contact-note {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: #000000;
+}
+/* Team page */
+
+.team-main {
+  padding-top: 4.25rem;
+}
+
+.team-section {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.team-section + .team-section {
+  padding-top: 1rem;
+}
+
+.team-section-title {
+  font-size: 1.7rem;
+  margin: 0 0 1.8rem;
+  letter-spacing: -0.04em;
+}
+
+.team-grid {
+  display: grid;
+  gap: 1.8rem;
+}
+
+.board-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Management + Clinical tiles: full width of the page container */
+.single-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 960px) {
+  .single-grid {
+    justify-content: flex-start;
+  }
+}
+
+.team-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  padding: 1.6rem 1.4rem 1.5rem;
+  text-align: center;
+  overflow: hidden;                         /* so zoomed content stays inside */
+  transition: transform 1500ms ease-out,
+              box-shadow 1000ms ease-out,
+              border-color 1200ms ease-out;
+}
+
+.team-card:hover {
+  transform: scale(1.03);                   /* zoom in slightly on hover */
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.65);
+  border-color: rgba(45, 212, 191, 0.8);    /* optional teal accent on hover */
+}
+
+
+.team-photo {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 1.3rem;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 0.9rem;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.16);
+}
+
+.team-name {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 600;          /* keep them nicely bold as names */
+  color: #ffffff;            /* white */
+}
+
+
+.team-title {
+  margin: 0 0 0.7rem;
+  font-size: 1.1rem;
+font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;  
+font-weight: 500;
+  color: var(--text-muted);
+}
+
+.team-experience {
+  margin: 0;
+  font-size: 0.9rem;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  color: var(--text-muted); /* or #e5e7eb for full white */
+
+  /* hide by default */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 220ms ease-out,
+              opacity 220ms ease-out,
+              margin-top 220ms ease-out;
+}
+
+/* On hover, reveal the experience text */
+.team-card:hover .team-experience {
+  max-height: 200px;        /* enough room for a short paragraph */
+  opacity: 1;
+  margin-top: 0.6rem;       /* add a little gap under the title when visible */
+}
+
+
+
+/* Responsive layout for board grid */
+
+@media (max-width: 960px) {
+  .board-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .board-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .single-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Footer */
+
+.site-footer {
+  padding-block: 1.4rem;
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+  background: rgba(15, 23, 42, 0.95);
+  margin-top: 2rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #e5e7eb;
+}
+
+
+/* Icon animations (for your icons/logos) */
+
+.icon-anim {
+  transition: transform var(--transition-med), box-shadow var(--transition-med),
+    filter var(--transition-med);
+  will-change: transform;
+}
+
+.icon-anim:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.16);
+  filter: saturate(1.1);
+}
+
+/* Scroll reveal */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 420ms ease-out, transform 420ms ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .science-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .science-flow-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .starburst-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .starburst-center {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 2.5rem;
+  }
+
+  .arm.top-left,
+  .arm.middle-left,
+  .arm.bottom-left,
+  .arm.top-right,
+  .arm.middle-right,
+  .arm.bottom-right {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .partners-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .science-flow-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .header-inner {
+    padding-block: 0.55rem;
+  }
+
+  main {
+    padding-top: 3.8rem;
+  }
+
+  .quote-inner {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+
+  .hero-orbit {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+
+.team-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.65);
+  border-color: rgba(45, 212, 191, 0.8);
+}
+
+
+/* STD diagnostics unmet need section (homepage) */
+
+.std-section {
+  padding-block: var(--section-padding-y);
+}
+
+/* Text on the left, stat card on the right (desktop) */
+.std-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+
+/* BIGGER heading */
+.std-copy h2 {
+  font-size: 2.2rem;   /* increase this if you want even larger */
+  margin: 0 0 1.1rem;
+  letter-spacing: -0.04em;
+}
+
+/* Lead paragraph with inline US$10 billion */
+.std-lead {
+  font-size: 1.02rem;
+  margin: 0 0 0.9rem;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+color: #ffffff;
+}
+
+.std-copy p {
+  margin: 0 0 0.75rem;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 300;
+color: #ffffff;
+}
+
+.std-copy p:last-child {
+  margin-bottom: 0;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Highlight stat card on the right */
+
+.std-stat-card {
+  align-self: center;
+  background: var(--surface);
+  border-radius: 1.4rem;
+  border: 1px solid rgba(45, 212, 191, 0.65);
+  box-shadow: var(--shadow-soft);
+  padding: 1.6rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: left;
+}
+
+.std-stat-label {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+.std-stat-value {
+  font-size: 2.1rem;   /* big US$10B+ in the card */
+  font-weight: 700;
+  color: #e0f2f1;
+  line-height: 1.5;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.std-stat-caption {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+/* Mobile: stack text and stat card vertically */
+
+@media (max-width: 900px) {
+  .std-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.6rem;
+  }
+
+  .std-stat-card {
+    max-width: 320px;
+    margin-inline: auto;
+  }
+}
+/* Partners / collaborators grid */
+
+.partners-section {
+  padding-block: var(--section-padding-y);
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Individual partner tiles: transparent with teal border */
+
+.partner-card {
+  background: transparent;
+  border-radius: 1rem;
+  border: 1px solid rgba(45, 212, 191, 0.75);  /* teal outline */
+  aspect-ratio: 1 / 1;                         /* square tiles */
+  display: grid;
+  place-items: center;
+  padding: 0.2rem;
+  box-shadow: none;
+}
+
+/* Logos inside tiles */
+
+.partner-card img {
+  max-width: 100%;
+  max-height: 170px;     /* tweak if you want them bigger/smaller */
+  object-fit: contain;
+  display: block;
+}
+
+/* Optional: smaller stacked layout on phones */
+
+@media (max-width: 700px) {
+  .partners-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 620px;
+  }
+}
+
+/* Force LFA image size */
+.lfa-image {
+  width: 100%;
+  max-width: 520px !important;  /* adjust smaller/larger as you like */
+  height: auto;
+  display: block;
+}
+
+
+
+.quote-inner {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.1rem 0 2.2rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.quote-photo-col {
+  flex: 0 0 auto;
+  text-align: center;  /* center image + credentials under it */
+}
+
+.quote-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.6);
+  margin-bottom: 0.4rem;
+}
+
+.quote-content {
+  flex: 1 1 0;
+  min-width: 260px;
+}
+
+/* Main quote text */
+.quote-text {
+  font-size: 1.06rem;
+  margin: 0 0 0.9rem;
+  color: #ffffff;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 300;
+}
+
+/* Credentials now under the photo, smaller */
+.quote-credentials {
+  font-size: 0.8rem;   /* smaller than before */
+  line-height: 1.4;
+  margin: 0;
+  color: #ffffff;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 300;
+}
+
+/* Name at the end, larger */
+.quote-name {
+  margin: 0;
+  font-size: 1.8rem;   /* make this nice and prominent */
+  font-weight: 600;
+  color: #ffffff;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Stack nicely on small screens */
+@media (max-width: 750px) {
+  .quote-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .quote-content {
+    text-align: left;  /* or center if you prefer */
+    max-width: 100%;
+  }
+}
+
+/* Force science image to fit nicely on the homepage */
+.science-diagram-section img {
+  width: 100% !important;
+  max-width: 850px !important;
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
+  transition: transform 220ms ease-out;
+  transform-origin: center center;
+}
+/* Tiny, clear zoom on hover directly on the image */
+.science-diagram-section img:hover {
+  transform: scale(1.2);   /* use 1.05 so it’s clearly visible */
+}
+
+img[src$="GRIP-hero.png"] {
+  width: 100%;
+  max-width: 520px;
+  max-height: 360px;     /* optional: constrain height */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+
+/* LFA section heading: left aligned */
+.lfa-header {
+  text-align: left;
+  margin-bottom: 0.6rem;
+}
+
+.lfa-header h2 {
+  font-size: 1.6rem;  /* or whatever size you set before */
+  margin: 0;
+}
+
+/* Main text under "The science behind GRIP" */
+.science-intro-text {
+  margin: 0 !important;
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: 1.15rem;  /* increase this for larger text (e.g. 1.2rem) */
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* Contact page headings: force black text */
+.contact-heading {
+  color: #000000
+}
+
+/* Make all text in the Contact page cards black */
+.contact-card,
+.contact-card * {
+  color: #000000 !important;
+}
+
+/* Ensure input/textarea text is black too */
+.contact-card input,
+.contact-card textarea {
+  color: #000000 !important;
+}
+
+/* Optional: slightly softer placeholder so it's not pure black */
+.contact-card input::placeholder,
+.contact-card textarea::placeholder {
+  color: #555555;
+}
+
+/* Make all text in the Collaboration & partnerships box black */
+.contact-info,
+.contact-info * {
+  color: #000000 !important;
+}
+
+/* Enable section-by-section scroll snapping */
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;  /* try 'mandatory' for stronger snapping */
+}
+
+/* Each major section snaps to the top of the viewport */
+.snap-section {
+  scroll-snap-align: start;
+min-height: auto;
+}
+
+/* Disable snapping for the science image section, even if it has snap-section */
+.science-diagram-section.snap-section {
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+}
+
+/* "The GRIP platform at a glance" heading: force left alignment */
+.starburst-header {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.starburst-title {
+  margin: 0;
+  text-align: left;
+}
+
+.teal-accent {
+  color: #7de8e0;              /* soft teal-white */
+  font-weight: 600;
+  position: relative;
+  white-space: nowrap;
+}
+
+
+
+

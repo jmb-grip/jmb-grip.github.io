@@ -1598,7 +1598,7 @@ min-height: auto;
   color: #7de8e0;              /* soft teal-white */
   font-weight: 600;
   position: relative;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 

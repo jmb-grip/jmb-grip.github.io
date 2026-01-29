@@ -443,7 +443,10 @@ h1, h2, h3, h4 {
 
 .starburst-image-wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;   /* key: stack caption under image */
+  align-items: center;      /* centers caption + image */
+  justify-content: flex-start;
+  gap: 0.55rem;
 }
 
 .starburst-image {
@@ -463,27 +466,40 @@ h1, h2, h3, h4 {
   transform: scale(1.12);
 }
 
+.starburst-caption {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--text-muted);
+  font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
+  max-width: 28rem;         /* prevents super-wide caption lines */
+}
+
 /* Mobile: stack image and points vertically */
 
 @media (max-width: 900px) {
   .starburst-layout {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.6rem;
   }
 
-  /* On phones, show text first and image second (or flip if you prefer) */
-  .starburst-points {
-    order: 2;
+  /* Force image ABOVE points on narrow screens */
+  .starburst-image-wrapper {
+    grid-column: 1;
+    grid-row: 1;
   }
 
-  .starburst-image-wrapper {
-    order: 1;
+  .starburst-points {
+    grid-column: 1;
+    grid-row: 2;
   }
 
   .starburst-image {
     max-width: 320px;
   }
 }
+
 
 /* Next-generation CRISPR diagnostics section */
 
@@ -509,7 +525,7 @@ h1, h2, h3, h4 {
 .nextgen-text {
   max-width: 860px;          /* wider than default body text */
   margin: 0 auto;            /* centers the block */
-  text-align: center;        /* centers the text itself */
+  text-align: left;        /* centers the text itself */
 
   font-size: 1.4rem;         /* slightly larger than normal paragraphs */
   line-height: 1.55;
@@ -1067,6 +1083,7 @@ font-weight: 500;
   font-size: 0.9rem;
   font-family: "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
+  text-align: left;
   color: var(--text-muted); /* or #e5e7eb for full white */
 
   /* hide by default */

@@ -44,3 +44,49 @@
     yearSpan.textContent = new Date().getFullYear();
   }
 })();
+
+
+(function () {
+  const form = document.getElementById("contactForm");
+  const success = document.getElementById("contactSuccess");
+  const error = document.getElementById("contactError");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.textContent : "";
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+    }
+
+    try {
+      const formData = new FormData(form);
+
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        form.hidden = true;
+        if (error) error.hidden = true;
+        if (success) success.hidden = false;
+      } else {
+        if (error) error.hidden = false;
+      }
+    } catch (err) {
+      if (error) error.hidden = false;
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText || "Send message";
+      }
+    }
+  });
+})();

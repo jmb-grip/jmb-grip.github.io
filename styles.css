@@ -177,6 +177,26 @@ section {
   box-shadow: var(--shadow-soft);
 }
 
+.contact-success, .contact-error {
+  margin-top: 1rem;
+  padding: 1.2rem 1.2rem;
+  border-radius: 1rem;
+  border: none;
+  background: #e5e7eb;
+}
+
+.contact-success h3 {
+  margin: 0 0 0.4rem;
+  color: var(--text-main);
+}
+
+.contact-success p,
+.contact-error p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+
 /* Partner tiles are a bit flatter */
 .partner-card {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);

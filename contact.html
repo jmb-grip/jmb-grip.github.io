@@ -57,7 +57,7 @@
         <div class="contact-card reveal">
           <h2 class="contact-heading">Contact us</h2>
           <!-- If you use a service like Formspree, update the action attribute below -->
-          <form class="contact-form" method="post" action="#">
+          <form id="contactForm" class="contact-form" method="POST" action="https://formspree.io/f/mgoloakd">
             <div class="form-row">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" required />
@@ -80,8 +80,14 @@
 
             <button type="submit" class="button primary full-width">Send message</button>
           </form>
+          <div id="contactSuccess" class="contact-success" hidden>
+            <h3>Message sent</h3>
+            <p>Your message was submitted — we’ll get back to you soon.</p>
+          </div>
+          <div id="contactError" class="contact-error" hidden>
+            <p>Something went wrong. Please try again, or email us directly.</p>
+          </div>
         </div>
-
         <aside class="contact-info reveal">
           <h2 class="contact-heading">Collaboration & partnerships</h2>
           <p>
